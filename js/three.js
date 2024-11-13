@@ -1,33 +1,95 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-const widht = 1000;
-const height = 1000;
-
-
+// Initialize clock and scene
+const clock = new THREE.Clock();
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, widht / height, 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+const canvas = document.querySelector("canvas")
+const renderer = new THREE.WebGLRenderer({ canvas: canvas });
+document.body.appendChild(renderer.domElement);
 
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize( widht, height );
-renderer.setAnimationLoop( animate );
-document.body.appendChild( renderer.domElement );
+// Set scene background color based on body background color
+const body = document.body;
+const backgroundColor = window.getComputedStyle(body).backgroundColor;
+const [r, g, b] = backgroundColor.match(/\d+/g).map(Number);
+scene.background = new THREE.Color(backgroundColor);
+const lum = 0.299 * r + 0.587 * g + 0.114 * b;
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+// Set up ambient lights
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+scene.add(ambientLight);
 
-const controls = new OrbitControls( camera, renderer.domElement );
+// Load appropriate model and background texture based on luminosity
+const modelName = lum >= 127.5 ? "spacestation_light" : "spacestation";
+let model = null;
 
-camera.position.z = 5;
+const loader = new GLTFLoader();
+loader.load(`../gltf/${modelName}/scene.gltf`, (gltf) => {
+    model = gltf.scene;
+    scene.add(model);
+});
 
-controls.update();
+if (lum < 127.5) {
+    const texture = new THREE.TextureLoader().load("../resources/images/dark_space.jpg");
+    texture.colorSpace = THREE.SRGBColorSpace;
+    scene.background = texture;
 
-function animate() {
+    camera.position.set(-10, 60, 50);
+    camera.rotation.set(100, 0, 50);
 
-    //controls.update();
+    // Set up lighting
+    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 10);
+    directionalLight.position.set(20, -10, -20);
+    scene.add(directionalLight);
 
-	renderer.render( scene, camera );
-
+    const directionalLightBlue = new THREE.DirectionalLight(0x00FFFF, 1);
+    directionalLightBlue.position.set(-20, 10, -20);
+    scene.add(directionalLightBlue);
 }
+else{
+    const texture = new THREE.TextureLoader().load("../resources/images/light_space.jpg");
+    //texture.colorSpace = THREE.SRGBColorSpace;
+    
+    scene.background = texture;
+
+    camera.position.set(0, 0, 7);
+    const directionalLightBlue = new THREE.DirectionalLight(0xEEEEEFF, 1);
+    directionalLightBlue.position.set(15, 0, 10);
+    scene.add(directionalLightBlue);
+}
+
+// Adjust canvas size and camera aspect ratio on resize
+function resize() {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    if (width !== canvas.width || height !== canvas.height) {
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    }
+}
+
+var fisrtFrame = true;
+// Animation loop
+function animate() {
+    if (model) {
+        if (lum < 127.5){
+            model.rotation.y += clock.getDelta() * 0.2;
+        }
+        else{
+            model.rotateX(clock.getDelta() * 0.1);
+            if(fisrtFrame)
+            {
+                model.rotation.set(0.3,-2.4,-0.15);
+                model.position.set(3,1,0)
+                fisrtFrame = false;
+            }
+        }
+    }
+    resize();
+    renderer.render(scene, camera);
+}
+
+renderer.setAnimationLoop(animate);

@@ -1,36 +1,40 @@
-INSERT INTO `SpaceMissions`.`missions` (`title`, `description`) VALUES
-('Alpha Exploration', 'A deep-space exploration mission to investigate new star systems.'),
-('Lunar Recon', 'Scouting and mapping mission of the lunar surface.'),
-('Mars Research', 'In-depth research mission on the surface of Mars.'),
-('Colony Setup', 'Establishing the first human colony on a nearby exoplanet.'),
-('Nebula Defense', 'Defensive mission in the Orion Nebula region.'),
-('Supply Run', 'Transport mission delivering supplies to the Mars base.'),
-('Jupiter Station', 'Establishing a research station on one of Jupiter’s moons.'),
-('Asteroid Mining', 'Mining resources from an asteroid belt near the outer planets.'),
-('Proxima Expedition', 'Exploratory mission to Proxima Centauri.'),
-('Galactic Survey', 'Mapping and surveying new galaxies beyond the Milky Way.');
+-- Inserting 10 missions with creative names
+INSERT INTO `SpaceMissions`.`missions` (`title`, `description`, `start_date`, `end_date`, `status`, `launch_location`, `destination`, `image_url`) 
+VALUES
+('Celestial Voyage', 'A mission to explore the farthest reaches of the galaxy', '2024-01-01', '2024-12-31', 'planned', 'Earth', 'Outer Galaxy', 'celestial_voyage.jpg'),
+('Nebula Odyssey', 'Journey into the heart of the Orion Nebula to study its mysteries', '2025-01-01', '2025-12-31', 'planned', 'Earth', 'Orion Nebula', 'nebula_odyssey.jpg'),
+('Stellar Awakening', 'A mission to study dormant stars and explore their hidden potentials', '2026-01-01', '2026-12-31', 'planned', 'Mars', 'Stellar System', 'stellar_awakening.jpg'),
+('Eclipse Horizon', 'An expedition to observe a rare solar eclipse from space', '2027-01-01', '2027-12-31', 'planned', 'Earth', 'Solar Eclipse', 'eclipse_horizon.jpg'),
+('Exoplanet Pioneers', 'First steps towards colonizing distant exoplanets', '2028-01-01', '2028-12-31', 'planned', 'Earth', 'Exoplanet System', 'exoplanet_pioneers.jpg'),
+('Black Hole Enigma', 'A daring mission to study the mysteries of a black hole', '2029-01-01', '2029-12-31', 'planned', 'Earth', 'Sagittarius A*', 'black_hole_enigma.jpg'),
+('Cosmic Gateway', 'Research on the phenomenon of wormholes and possible travel through them', '2030-01-01', '2030-12-31', 'planned', 'Earth', 'Wormhole Galaxy', 'cosmic_gateway.jpg'),
+('Asteroid Dominion', 'Exploring and mining valuable resources from asteroid fields', '2031-01-01', '2031-12-31', 'planned', 'Earth', 'Asteroid Belt', 'asteroid_dominion.jpg'),
+('Lunar Genesis', 'A mission to establish the first permanent base on Earth''s Moon', '2032-01-01', '2032-12-31', 'planned', 'Earth', 'Moon Base', 'lunar_genesis.jpg'),
+('Red Dawn Expedition', 'An exploration mission to the red dwarf star system', '2033-01-01', '2033-12-31', 'planned', 'Earth', 'Red Dwarf System', 'red_dawn_expedition.jpg');
 
-INSERT INTO `SpaceMissions`.`spaceships` (`name`, `type`, `missions_id`) VALUES
-('Voyager', 'exploration', 1),
-('Starlight', 'scout', 2),
-('Odyssey', 'research', 3),
-('Orion', 'colony', 4),
-('Prometheus', 'dreadnaught', 5),
-('Lunar Express', 'transport', 6),
-('Titan', 'resupply', 7),
-('Apollo', 'mining', 8),
-('Nebula', 'scout', 9),
-('Galileo', 'exploration', 10),
-('Aurora', 'colony', 1),
-('Falcon', 'scout', 2),
-('Endeavor', 'research', 3),
-('Mercury', 'transport', 4),
-('Hercules', 'dreadnaught', 5),
-('Atlas', 'mining', 6),
-('Pioneer', 'resupply', 7),
-('Eclipse', 'exploration', 8),
-('Daedalus', 'colony', 9),
-('Celestial', 'research', 10);
+-- Inserting 20 spaceships with creative names
+INSERT INTO `SpaceMissions`.`spaceships` (`name`, `type`, `missions_id`, `description`) 
+VALUES
+('Titan''s Wrath', 'dreadnaught', 1, 'A powerful dreadnought for long-duration missions to uncharted spaces'),
+('Galactic Voyager', 'exploration', 2, 'State-of-the-art exploration vessel for deep-space discovery'),
+('Nebula Seeker', 'exploration', 3, 'Sleek, high-speed spaceship designed for navigating through nebulae'),
+('Eclipse Star', 'research', 4, 'Futuristic research ship equipped for stellar observations and analysis'),
+('Astral Serpent', 'scout', 5, 'Fast and maneuverable scout ship, built for missions requiring stealth and speed'),
+('Celestial Ark', 'colony', 6, 'Colony ship designed for long journeys to far-off exoplanets'),
+('Solaris Horizon', 'transport', 7, 'Transport ship used for resource gathering and planetary missions'),
+('Cosmos Harbinger', 'exploration', 8, 'Long-range exploration vessel designed to travel beyond the Milky Way'),
+('Event Horizon', 'research', 9, 'Ship engineered for missions at the edge of black holes'),
+('Starfire Pioneer', 'research', 10, 'Research vessel equipped to study distant stars and supernova remnants'),
+('Nebula Phoenix', 'exploration', 1, 'Revival ship sent to study the lifecycle of stars within nebulae'),
+('Vanguard Nova', 'exploration', 2, 'Spaceship that leads humanity''s exploration into the deepest regions of space'),
+('Quantum Drift', 'research', 3, 'High-tech research vessel capable of testing quantum theories in space'),
+('Astralis Odyssey', 'exploration', 4, 'Ship designed for deep-space exploration across the most remote galaxies'),
+('Aetheric Spirit', 'scout', 5, 'Stealth spacecraft used for covert exploration of planetary systems'),
+('Celestia''s Gate', 'research', 6, 'Vessel designed to study and potentially navigate wormholes'),
+('Starlight Whisper', 'scout', 7, 'Nimble scout ship for navigating asteroid belts and other hazardous areas'),
+('Hyperion Sentinel', 'dreadnaught', 8, 'Mighty space fortress used to guard distant colonies'),
+('Vortex Voyager', 'exploration', 9, 'Ship tasked with exploring the boundaries of space-time anomalies'),
+('Lunar Horizon', 'transport', 10, 'Specialized ship designed to explore the farthest reaches of the Moon''s surface');
 
 INSERT INTO `SpaceMissions`.`astronauts` (`first_name`, `last_name`, `occupation`, `birth_date`, `spaceships_id`) VALUES
 -- Crew for Voyager (exploration, 2 astronauts)

@@ -1,0 +1,103 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  margin: 0%;
+}
+
+table {
+  background-color: black;
+  margin-left: 30px;
+  margin-top: 30px;
+  border-spacing: 2px; /* Adds space between table cells */
+}
+
+th {
+  background-color: #d86f06; /* Darker background for header */
+  color: #ffffff; /* Lighter text color for contrast */
+  text-align: center;
+  height: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+th .button {
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column; /* Arrange images in a column */ /* Space between text and images */
+}
+
+.button-container img {
+  width: 20px; /* Adjust size if needed */
+  cursor: pointer; /* Show pointer cursor */
+}
+
+td {
+  text-align: left; /* Left-align table data */
+  height: 30px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+tr {
+  padding: 0%; /* No padding for rows */
+}
+
+tr:nth-child(even) {
+  background-color: #1e1e1e; /* Light surface color for even rows */
+}
+
+tr:nth-child(odd) {
+  background-color: #352412; /* Dark blue background for odd rows */
+  color: #ffffff; /* Lighter text for better contrast */
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9999;
+}
+
+a.button {
+  border: none;
+  color: #202020;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: #df902a;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+a.button:hover {
+  opacity: 80%;
+}
+
+a.button.active {
+  background-color: #c77700;
+}
+
+.topnav {
+  background-color: rgb(39, 32, 26);
+  padding: 10px;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  width: 100%; /* ensures it stretches across the screen */
+}
+
+.topbar {
+  margin: 30px;
+  padding: 10px;
+  color: #e0e0e0;
+  background-color: #352412;
+  font-size: 20;
+}/*# sourceMappingURL=dark_theme.css.map */

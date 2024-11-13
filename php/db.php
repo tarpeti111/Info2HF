@@ -1,4 +1,5 @@
 <?php
+require_once("header.php");
 function getDb($hostname, $dbname, $username, $password){
     try {
         $db = new PDO("mysql:host=$hostname; dbname=$dbname", "$username", "$password");
@@ -9,3 +10,4 @@ function getDb($hostname, $dbname, $username, $password){
         exit;
     }
 }
+$db = getDb("localhost", "SpaceMissions", "root", "");

@@ -1,5 +1,6 @@
 <?php
-    include "header.php";
+    require_once "header.php";
+    require_once "db.php";
 ?>
 
 <html !DOCTYPE>
@@ -7,41 +8,42 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/main.css">
-        <script type="importmap">
-            {
-                "imports": {
-                    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-                }
-            }
-</script>
+        <?php require "style.php"; ?>
+        <script type="importmap"><?php include "../json/importmap.json"; ?></script>
         <title>Space Mission Manager</title>
+        <script src="../js/sort_table.js" defer></script>
     </head>
     <body>
+        <canvas></canvas>
+        <?php include "navbar.php"; ?>
+        <div class="topbar">Astronauts</div>
         <table>
             <tr>
-                <th>Frist Name</th>
-                <th>Last Name</th>
-                <th>Occupation</th>
-                <th></th>
+                <th onclick="sortTable(0)">Name</th>
+                <th onclick="sortTable(1)">Occupation</th>
+                <th onclick="sortTable(2)">Ship</th>
+                <th onclick="sortTable(3)">Mission</th>
             </tr>
             <?php
                 $query = $db->query("SELECT * FROM astronauts");
                 while ($row = $query->fetchObject()):
             ?>
                 <tr>
-                    <td><?= $row->first_name ?></td>
-                    <td><?= $row->last_name ?></td>
+                    <td><?= $row->first_name ?> <?= $row->last_name ?></td>
                     <td><?= ucfirst($row->occupation) ?></td>
-                    <td>
-                        <div>
-                            <script type="module" src="../js/three.js"></script>
-                        </div>
-                    </td>
+                    
+                    <?php 
+                    $spaceship_query = "SELECT missions_id, name FROM spaceships WHERE spaceships.id = $row->spaceships_id;";
+                    $spaceship = $db->query($spaceship_query)->fetchObject();
+
+                    $mission_query = "SELECT title FROM missions WHERE missions.id = $spaceship->missions_id";
+                    $mission_title = $db->query($mission_query)->fetchObject();?>
+        
+                    <td><?= $spaceship->name ?></td>
+                    <td><?= $mission_title->title ?></td>
                 </tr>
             <?php endwhile; ?>
         </table>
-        <button><a href="spaceships_view.php">AA</a></button>
+        <script type="module" src="../js/three.js"></script>
     </body>
 </html>

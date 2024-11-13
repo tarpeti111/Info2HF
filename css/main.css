@@ -1,3 +1,60 @@
 body {
-  background-color: aquamarine;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+th {
+  background-color: #f57c00;
+  color: #e0e0e0;
+  text-align: center;
+}
+
+td {
+  text-align: left;
+}
+
+tr {
+  padding: 0%;
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9999;
+}
+
+a.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+a.button:hover {
+  opacity: 80%;
+}
+
+tr:nth-child(even) {
+  background-color: #1e1e1e;
+}
+
+tr:nth-child(odd) {
+  background-color: #f57c00;
+}
+
+a.button {
+  background-color: #ffb74d;
+  color: #b0b0b0;
+}
+
+a.button.active {
+  background-color: #ffa726;
 }/*# sourceMappingURL=main.css.map */

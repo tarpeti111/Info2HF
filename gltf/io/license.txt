@@ -1,0 +1,11 @@
+Model Information:
+* title:	Io
+* source:	https://sketchfab.com/3d-models/io-753e7fe0adc440afad4d177cd20ad793
+* author:	kongle (https://sketchfab.com/minecraftnorge)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Io" (https://sketchfab.com/3d-models/io-753e7fe0adc440afad4d177cd20ad793) by kongle (https://sketchfab.com/minecraftnorge) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

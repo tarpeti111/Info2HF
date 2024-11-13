@@ -1,0 +1,1 @@
+olyan lekérdezés ami broup by al meg count tal kiírja hány hajó és haány ember van missionön

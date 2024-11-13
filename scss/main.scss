@@ -1,3 +1,103 @@
-body{
-    background-color: aquamarine;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: $background;
+    color: $text-primary;
+    margin: 0%;
+}
+
+table {
+    background-color: black;
+    margin-left: 30px;
+    margin-top: 30px;
+    border-spacing: 2px;  /* Adds space between table cells */
+}
+
+th {
+    background-color: $highlight-terciary;  /* Darker background for header */
+    color: $text-primary-light;         /* Lighter text color for contrast */
+    text-align: center;
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    .button{
+        cursor: pointer;
+    }
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;  /* Arrange images in a column */     /* Space between text and images */
+}
+
+.button-container img {
+    width: 20px;             /* Adjust size if needed */
+    cursor: pointer;         /* Show pointer cursor */
+}
+
+td {
+    text-align: left;  /* Left-align table data */
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+tr {
+    padding: 0%;  /* No padding for rows */
+}
+
+tr:nth-child(even) {
+    background-color: $surface;  /* Light surface color for even rows */
+}
+
+tr:nth-child(odd) {
+    background-color: $highlight-secondary;  /* Dark blue background for odd rows */
+    color: $text-secondary;  /* Lighter text for better contrast */
+}
+
+canvas {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -9999;
+}
+
+a.button {
+    border: none;
+    color: $text-low-contrast;  // Primary text color for the button
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    background-color: $highlight-primary;  // Lighter blue for button background
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+a.button:hover {
+    opacity: 80%;  // Hover effect for buttons
+}
+
+a.button.active {
+    background-color: $highlight;  // Active state with brighter highlight color
+}
+
+.topnav {
+    background-color: $navBg;
+    padding: 10px;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    width: 100%; /* ensures it stretches across the screen */
+}
+
+.topbar{
+    margin: 30px;
+    padding: 10px;
+    color: $text-primary;
+    background-color: $highlight-secondary;
+    font-size: 20;
 }
