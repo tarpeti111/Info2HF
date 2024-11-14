@@ -20,7 +20,7 @@
             <th>Ship Name
                 <div class="button-container">
                     <img class="button" onclick="sortTable(0)" src="../resources/images/up_arrow_white.png" alt="up_arrow_white.png">
-                    <img src="../resources/images/down_arrow_white.png" alt="down_arrow_white.png">
+                    <img class="button" src="../resources/images/down_arrow_white.png" alt="down_arrow_white.png">
                 </div>
             </th>
             <th onclick="sortTable(1)">Type</th>

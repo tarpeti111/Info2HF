@@ -15,7 +15,6 @@ table {
 th {
   background-color: #d86f06; /* Darker background for header */
   color: #ffffff; /* Lighter text color for contrast */
-  text-align: center;
   height: 50px;
   padding-left: 10px;
   padding-right: 10px;
@@ -27,11 +26,20 @@ th .button {
 .button-container {
   display: flex;
   flex-direction: column; /* Arrange images in a column */ /* Space between text and images */
+  margin-left: 10px;
 }
 
 .button-container img {
   width: 20px; /* Adjust size if needed */
   cursor: pointer; /* Show pointer cursor */
+}
+
+.button-container img.button {
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0%;
+  padding: 0%;
+  height: 20px;
+  width: 20px;
 }
 
 td {
@@ -64,7 +72,7 @@ canvas {
   z-index: -9999;
 }
 
-a.button {
+.button {
   border: none;
   color: #202020;
   padding: 15px 32px;
@@ -73,11 +81,15 @@ a.button {
   display: inline-block;
   font-size: 16px;
   background-color: #df902a;
+  cursor: pointer;
+}
+
+a.button {
   margin-left: 20px;
   margin-right: 10px;
 }
 
-a.button:hover {
+.button:hover {
   opacity: 80%;
 }
 

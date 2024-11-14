@@ -4,7 +4,7 @@
         'index.php' => 'Home',
         'spaceships_view.php' => 'SpaceShips',
         'switch_theme.php' => 'SwitchThemes',
-        '#about' => 'About',
+        'login.php' => 'Log In',
     ];
 ?>
 
