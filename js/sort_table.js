@@ -1,4 +1,4 @@
-function sortTable(columnIndex) {
+function sortTable(columnIndex, direction) {
     const table = document.querySelector("table");
     const headers = table.querySelectorAll("th");
     let rows = Array.from(table.rows).slice(1); // Get rows, excluding the header row
@@ -17,7 +17,9 @@ function sortTable(columnIndex) {
         const cellA = a.cells[columnIndex].innerText.toLowerCase();
         const cellB = b.cells[columnIndex].innerText.toLowerCase();
 
-        if (cellA < cellB) return isAscending ? -1 : 1;
+        if(direction == "down"){
+            if (cellA < cellB) return isAscending ? -1 : 1;
+        }
         if (cellA > cellB) return isAscending ? 1 : -1;
         return 0;
     });

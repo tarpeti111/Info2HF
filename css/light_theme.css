@@ -24,22 +24,19 @@ th .button {
 }
 
 .button-container {
-  display: flex;
-  flex-direction: column; /* Arrange images in a column */ /* Space between text and images */
   margin-left: 10px;
-}
-
-.button-container img {
-  width: 20px; /* Adjust size if needed */
-  cursor: pointer; /* Show pointer cursor */
 }
 
 .button-container img.button {
   background-color: rgba(0, 0, 0, 0);
-  margin: 0%;
+  margin: -4px;
   padding: 0%;
-  height: 20px;
-  width: 20px;
+}
+
+.th-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 td {
@@ -112,4 +109,15 @@ a.button.active {
   color: #212121;
   background-color: #e7f4ff;
   font-size: 20;
+}
+
+form {
+  width: 200px;
+  position: relative;
+  left: 50%;
+  transform: translate(-100px, 0);
+}
+form input {
+  width: 200px;
+  margin-bottom: 20px;
 }/*# sourceMappingURL=light_theme.css.map */
