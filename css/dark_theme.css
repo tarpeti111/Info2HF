@@ -25,12 +25,16 @@ th .button {
 
 .button-container {
   margin-left: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .button-container img.button {
   background-color: rgba(0, 0, 0, 0);
   margin: -4px;
   padding: 0%;
+  width: 16px;
+  height: 16px;
 }
 
 .th-content {

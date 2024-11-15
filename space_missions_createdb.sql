@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS `SpaceMissions`.`spaceships` ;
 
 CREATE TABLE IF NOT EXISTS `SpaceMissions`.`spaceships` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
+  `name` VARCHAR(45) NOT NULL,
   `type` ENUM('scout', 'exploration', 'transport', 'dreadnaught', 'research', 'colony', 'resupply', 'mining') NOT NULL,
   `missions_id` INT UNSIGNED NOT NULL,
   `description` VARCHAR(200) NULL,
@@ -88,6 +88,7 @@ CREATE TABLE IF NOT EXISTS `SpaceMissions`.`users` (
   `username` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
+  `access_level` ENUM('user', 'admin') NULL DEFAULT 'user',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))

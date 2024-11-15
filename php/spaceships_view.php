@@ -17,17 +17,42 @@
         <div class="topbar">Space Ships</div>
         <table>
         <tr>
-            <th><div class="th-content">
-                <div>Ship Name</div>
+            <th>
+                <div class="th-content">
+                    <div>Ship Name</div>
                     <div class="button-container">
                         <img class="button" onclick= "sortTable(0, 'up')" src="../resources/images/up_arrow_white.png" alt="up_arrow_white.png">
                         <img class="button" onclick= "sortTable(0, 'down')" src="../resources/images/down_arrow_white.png" alt="down_arrow_white.png">
                     </div>
                 </div>
             </th>
-            <th onclick="sortTable(1)">Type</th>
-            <th onclick="sortTable(2)">Crew</th>
-            <th onclick="sortTable(3)">Mission</th>
+            <th>
+                <div class="th-content">
+                    <div>Type</div>
+                    <div class="button-container">
+                        <img class="button" onclick= "sortTable(1, 'up')" src="../resources/images/up_arrow_white.png" alt="up_arrow_white.png">
+                        <img class="button" onclick= "sortTable(1, 'down')" src="../resources/images/down_arrow_white.png" alt="down_arrow_white.png">
+                    </div>
+                </div>
+            </th>
+            <th>
+                <div class="th-content">
+                    <div>Crew</div>
+                    <div class="button-container">
+                        <img class="button" onclick= "sortTable(2, 'up')" src="../resources/images/up_arrow_white.png" alt="up_arrow_white.png">
+                        <img class="button" onclick= "sortTable(2, 'down')" src="../resources/images/down_arrow_white.png" alt="down_arrow_white.png">
+                    </div>
+                </div>
+            </th>
+            <th>
+                <div class="th-content">
+                    <div>Mission</div>
+                    <div class="button-container">
+                        <img class="button" onclick= "sortTable(3, 'up')" src="../resources/images/up_arrow_white.png" alt="up_arrow_white.png">
+                        <img class="button" onclick= "sortTable(3, 'down')" src="../resources/images/down_arrow_white.png" alt="down_arrow_white.png">
+                    </div>
+                </div>
+            </th>
         </tr>
         <?php
             $query = $db->query("SELECT * FROM spaceships");

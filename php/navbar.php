@@ -4,8 +4,13 @@
         'index.php' => 'Home',
         'spaceships_view.php' => 'SpaceShips',
         'switch_theme.php' => 'SwitchThemes',
-        'login.php' => 'Log In',
     ];
+    if(!isset($_SESSION)){
+        $navlinks['login.php'] = 'Log In';
+    }
+    else{
+        $navLinks['logout.php'] = 'Log Out';
+    }
 ?>
 
 <div class="topnav">

@@ -27,12 +27,16 @@ th {
     //display: flex;
     //flex-direction: column;  /* Arrange images in a column */     /* Space between text and images */
     margin-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .button-container img.button{
     background-color: rgba(0,0,0,0);
     margin: -4px;
     padding: 0%;
+    width: 16px;
+    height: 16px;
 }
 
 .th-content{
