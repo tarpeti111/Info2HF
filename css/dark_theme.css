@@ -85,9 +85,10 @@ canvas {
   cursor: pointer;
 }
 
-a.button {
+.topnav a.button {
   margin-left: 20px;
   margin-right: 10px;
+  white-space: nowrap;
 }
 
 .button:hover {
@@ -105,6 +106,16 @@ a.button.active {
   position: fixed;
   top: 0;
   width: 100%; /* ensures it stretches across the screen */
+  display: flex; /* Use flexbox for the layout */
+  justify-content: space-between; /* Separates left and right sections */
+  align-items: center;
+}
+.topnav .right {
+  font-size: large;
+  display: inline-flex;
+  justify-content: flex-end; /* Aligns items inside .right to the end */
+  margin-right: 40px; /* This adds spacing between the content in .right and the edge */
+  width: 100%; /* Allows proper alignment if needed */
 }
 
 .topbar {
@@ -124,4 +135,42 @@ form {
 form input {
   width: 200px;
   margin-bottom: 20px;
+}
+
+.home-content {
+  margin-left: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.home-content table {
+  margin-left: 0;
+  margin-right: 30px;
+  display: inline-flex;
+  justify-content: flex-end;
+}
+.home-content table tr:hover {
+  background-color: rgb(15, 70, 52);
+}
+.home-content .button {
+  margin: 0;
+  width: 200px;
+}
+
+ul {
+  margin: 0;
+  padding-inline-start: 0;
+}
+
+.button-update {
+  background-color: rgb(99, 148, 21);
+  color: #ffffff;
+}
+
+.button-delete {
+  background-color: rgb(148, 29, 21);
+  color: #ffffff;
+}
+
+.td-button {
+  padding: 0;
 }/*# sourceMappingURL=dark_theme.css.map */

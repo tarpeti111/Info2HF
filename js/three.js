@@ -5,10 +5,11 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 // Initialize clock and scene
 const clock = new THREE.Clock();
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 10000);
 const canvas = document.querySelector("canvas")
 const renderer = new THREE.WebGLRenderer({ canvas: canvas });
 document.body.appendChild(renderer.domElement);
+renderer.setPixelRatio(window.devicePixelRatio);
 
 // Set scene background color based on body background color
 const body = document.body;
@@ -18,17 +19,19 @@ scene.background = new THREE.Color(backgroundColor);
 const lum = 0.299 * r + 0.587 * g + 0.114 * b;
 
 // Set up ambient lights
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
 
 // Load appropriate model and background texture based on luminosity
-const modelName = lum >= 127.5 ? "spacestation_light" : "spacestation";
+var modelName = lum >= 127.5 ? "spacestation_light" : "spacestation";
 let model = null;
+var modelScale = 1;
 
 const loader = new GLTFLoader();
 loader.load(`../gltf/${modelName}/scene.gltf`, (gltf) => {
     model = gltf.scene;
     scene.add(model);
+    model.scale.set(modelScale, modelScale, modelScale)
 });
 
 if (lum < 127.5) {
@@ -40,7 +43,7 @@ if (lum < 127.5) {
     camera.rotation.set(100, 0, 50);
 
     // Set up lighting
-    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 10);
+    const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
     directionalLight.position.set(20, -10, -20);
     scene.add(directionalLight);
 
@@ -72,6 +75,7 @@ function resize() {
 }
 
 var fisrtFrame = true;
+
 // Animation loop
 function animate() {
     if (model) {
@@ -88,7 +92,9 @@ function animate() {
             }
         }
     }
+    
     resize();
+    
     renderer.render(scene, camera);
 }
 

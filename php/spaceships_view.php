@@ -53,6 +53,10 @@
                     </div>
                 </div>
             </th>
+            <?php if(isset($_SESSION['user'])): ?>
+            <th>Update</th>
+            <th>Delete</th>
+            <?php endif; ?>
         </tr>
         <?php
             $query = $db->query("SELECT * FROM spaceships");
@@ -72,6 +76,14 @@
                 <td>
                         <?= $db->query("SELECT title FROM missions WHERE missions.id = $row->missions_id LIMIT 1")->fetchObject()->title ?> <br>
                 </td>
+                <?php if(isset($_SESSION['user'])): ?>
+                <td class="td-button">
+                    <a class="button button-update" href="">Update</a>
+                </td>
+                <td class="td-button">
+                    <a class="button button-delete" href="">Delete</a>
+                </td>
+                <?php endif; ?>
             </tr>
             <?php endwhile; ?>
         </table>

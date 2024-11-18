@@ -6,8 +6,16 @@ $text-muted: #757575;   // Light gray text for muted content
 $text-primary-light: #f0f0f0;  // Very light gray for contrast with dark elements
 $border: #dddddd;        // Light border color
 $highlight: #3497e9;    // Bright blue highlight
-$highlight-secondary: #e7f4ff; // even lighter blue highlight
+$highlight-secondary: #c3e1fa; // even lighter blue highlight
 $highlight-primary: #64b5f6; // Lighter blue highlight
 $highlight-terciary: #1e88e5; // Darker blue highlight for table headers
 $text-low-contrast: #202020;
 $navBg: rgb(197, 234, 255);
+
+$button-update-color: #f0f0f0;
+$button-update-background: rgb(131, 194, 29);
+
+$button-delete-color: #f0f0f0;
+$button-delete-background: rgb(214, 45, 33);
+
+$tr-hover-background: rgb(143, 241, 241)

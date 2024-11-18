@@ -1,49 +1,72 @@
 <?php
-    require_once "header.php";
-    require_once "db.php";
+require_once "header.php";
+require_once "db.php";
+$username = $_SESSION['user']["username"] ?? ""; 
 ?>
-
 <html !DOCTYPE>
 <html lang="hu">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <?php require "style.php"; ?>
-        <script type="importmap"><?php include "../json/importmap.json"; ?></script>
-        <title>Space Mission Manager</title>
+        <?php include("style.php")?>
+        <title>Home</title>
         <script src="../js/sort_table.js" defer></script>
+        <script type="importmap"><?php include "../json/importmap.json"; ?></script>
     </head>
-    <body>
+    <body class="<?= $_SESSION["theme"] ?>">
         <canvas></canvas>
-        <?php include "navbar.php"; ?>
-        <div class="topbar">Astronauts</div>
-        <table>
-            <tr>
-                <th onclick="sortTable(0)">Name</th>
-                <th onclick="sortTable(1)">Occupation</th>
-                <th onclick="sortTable(2)">Ship</th>
-                <th onclick="sortTable(3)">Mission</th>
-            </tr>
-            <?php
-                $query = $db->query("SELECT * FROM astronauts");
-                while ($row = $query->fetchObject()):
-            ?>
+        <?php include "navbar.php" ?>
+        <div class="topbar">Welcome <?= $username ?></div>
+        <div class="home-content">
+            <div>
+                <h1>
+                    Navigation:
+                </h1>
+                <a class="button" href="astronauts.php">Astronauts</a><br><br>
+                <a class="button" href="spaceships.php">SpaceShips</a><br><br>
+                <a class="button" href="missions.php">Missions</a><br><br>
+                <ul>
+                    <h1>
+                        Reports:
+                    </h1>
+                </ul>
+                <li>
+                    Number of ongoing missions: <?= $db->query("SELECT count(id) as count FROM missions")->fetchObject()->count; ?>
+                </li>
+                <li>
+                    Number of Spaceships on missions: <?= $db->query("SELECT count(id) as count FROM spaceships WHERE missions_id IS NOT NULL")->fetchObject()->count; ?>
+                </li>
+                <li>
+                    Number of Astronauts on missions: <?= $db->query(
+                        "SELECT count(astronauts.id) AS count FROM astronauts " .
+                        "JOIN spaceships ON astronauts.spaceships_id = spaceships.id " .
+                        "WHERE astronauts.spaceships_id IS NOT NULL AND spaceships.missions_id IS NOT NULL;"
+                    )->fetchObject()->count; ?>
+                </li>
+            </div>
+            <table id="scaleButton">
                 <tr>
-                    <td><?= $row->first_name ?> <?= $row->last_name ?></td>
-                    <td><?= ucfirst($row->occupation) ?></td>
-                    
-                    <?php 
-                    $spaceship_query = "SELECT missions_id, name FROM spaceships WHERE spaceships.id = $row->spaceships_id;";
-                    $spaceship = $db->query($spaceship_query)->fetchObject();
-
-                    $mission_query = "SELECT title FROM missions WHERE missions.id = $spaceship->missions_id";
-                    $mission_title = $db->query($mission_query)->fetchObject();?>
-        
-                    <td><?= $spaceship->name ?></td>
-                    <td><?= $mission_title->title ?></td>
+                    <th>
+                        <div class="th-content">
+                            <div>Ongoing Missions</div>
+                            <div class="button-container">
+                                <img class="button" onclick= "sortTable(0, 'up')" src="../resources/images/up_arrow_white.png" alt="up_arrow_white.png">
+                                <img class="button" onclick= "sortTable(0, 'down')" src="../resources/images/down_arrow_white.png" alt="down_arrow_white.png">
+                            </div>
+                        </div>
+                    </th>
                 </tr>
-            <?php endwhile; ?>
-        </table>
-        <script type="module" src="../js/three.js"></script>
+                <?php
+                    $query = $db->query("SELECT title FROM missions");
+                    while($result = $query->fetchObject()):?> 
+                        <tr>
+                            <td>
+                                <?= $result->title ?>
+                            </td>
+                        </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
+        <script type="module" src="../js/home3d.js"></script>
     </body>
 </html>
