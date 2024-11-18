@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {  // Check if form is submitted via P
         <?php require "navbar.php"; ?>
         <div class="topbar">Log In</div>
         <?php if(isset($_SESSION['user'])){echo $_SESSION['user']['username'];} ?>
-        <form action="login.php" method="post">
+        <form class="login" action="login.php" method="post">
             <?php $username = isset($_POST['username']) ? $_POST['username'] : ""?>
             <input type="text" id="username" name="username" placeholder="username" value="<?= $username ?>"><br>
             <input type="text" id="password" name="password" placeholder="password"><br>
