@@ -2,6 +2,11 @@
     require_once "header.php";
     require_once "db.php";
 
+    if(!isset($_SESSION['user']))
+    {
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+    }
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo("posts");
     }
@@ -62,9 +67,11 @@ if ($result && strpos($result['Type'], 'enum') === 0) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php require "style.php"; ?>
         <title>Log In</title>
+        <script src="../js/add_remove_select.js"></script>
     </head>
     <body>
-        <form method="post">
+        <?php include "navbar.php"?>
+        <form method="post" class="form-update">
             <input type="text" value="<?= $name ?>">
 
             <select name="type" id="type">
@@ -78,15 +85,18 @@ if ($result && strpos($result['Type'], 'enum') === 0) {
             </select><br>
 
             <div id="add_selects_here"></div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    loadAstronauts().then(() => {
+                        <?php foreach ($crew as $crewMember): ?>
+                        add_select("<?= $crewMember['first_name'] . " " . $crewMember['last_name'] ?>");
+                        <?php endforeach; ?>
+                    });
+                });
+            </script>
             <button class="button" onclick="add_select()" type="button">Add</button>
-
-            <?php for( $i = 0; $i < count($crew); $i++ ){
-                echo $crew[$i]['first_name'] . " " . $crew[$i]['last_name'] . " ";
-            }?>
-
             <textarea id="description" name="description" rows="6" cols="60"><?= $description ?></textarea>
             <button class="button" type="submit">Submit</button>
         </form>
-        <script src="../js/add_remove_select.js"></script>
     </body>
 </html>

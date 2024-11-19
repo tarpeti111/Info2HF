@@ -1,19 +1,23 @@
-let loaded = false;
+var loaded = false;
 let astronauts = undefined;
 let selects = [];
 
-document.addEventListener("DOMContentLoaded", function () {
-    fetch('../php/get_astronauts.php')
-    .then(response => response.json())
-    .then((responseJson) => { astronauts = responseJson; loaded = true; })
-    .catch(error => console.error('Error fetching options:', error));
-});
+function loadAstronauts() {
+    return fetch('../php/get_astronauts.php')
+        .then(response => response.json())
+        .then(responseJson => {
+            astronauts = responseJson;
+            loaded = true;
+        })
+        .catch(error => console.error('Error fetching options:', error));
+}
 
 function add_select(value) {
-    if (!loaded) {
+    if(!loaded) {
         return;
     }
-
+    console.log(value)
+    
     // Create a container div for the select and remove button
     let containerDiv = document.createElement('div');
     containerDiv.classList.add('select-container'); // Optional: Add a class for styling
@@ -31,12 +35,17 @@ function add_select(value) {
         selectElement.value = value;
     }
     else{
-        for (let i = 0; i < selects.length; i++) {
+        let set = false;
+        let i = 0
+        for (;i < selects.length; i++){
             if(selects[i].selectedIndex != i){
                 selectElement.selectedIndex = i
+                set = true;
+                break;
             }
-            console.log(i)
-            console.log(selects[i].selectedIndex)
+        }
+        if(!set){
+            selectElement.selectedIndex = i
         }
     }
 
@@ -44,6 +53,7 @@ function add_select(value) {
     let removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
     removeButton.type = 'button';
+    removeButton.classList.add('button-delete')
 
     // Add event listener for removing the select element
     removeButton.addEventListener('click', function () {
@@ -82,7 +92,7 @@ function updateOptions() {
         optionsAll.push(select.options)
     });
 
-    //console.log(indexes)
+    console.log(indexes)
 
     optionsAll.forEach(options => {
         for (let i = 0; i < options.length; i++) {

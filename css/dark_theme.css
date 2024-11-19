@@ -126,15 +126,39 @@ a.button.active {
   font-size: 20;
 }
 
-form {
+.form-login {
   width: 200px;
   position: relative;
   left: 50%;
   transform: translate(-100px, 0);
 }
-form input {
+.form-login input {
   width: 200px;
   margin-bottom: 20px;
+}
+
+.form-update {
+  margin-left: 30px;
+  display: flexbox;
+  flex-direction: column;
+  width: 200px;
+}
+.form-update .select-container {
+  display: flex;
+  flex-direction: row;
+}
+.form-update .select-container button {
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+  border: none;
+}
+.form-update .select-container button:hover {
+  opacity: 80%;
+}
+.form-update element {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .home-content {
