@@ -3,7 +3,7 @@
     require_once "db.php";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        echo("fasz");
+        echo("posts");
     }
 
     $name = "";
@@ -42,7 +42,7 @@ $query = $db->prepare("SHOW COLUMNS FROM spaceships LIKE 'type'");
 $query->execute();
 
 // Fetch the column details
-$values = [];
+$options = [];
 $result = $query->fetch(PDO::FETCH_ASSOC);
 if ($result && strpos($result['Type'], 'enum') === 0) {
     // Extract the ENUM definition
@@ -52,7 +52,7 @@ if ($result && strpos($result['Type'], 'enum') === 0) {
     $enum = substr($enum, 5, -1);
     
     // Split the values into an array
-    $values = str_getcsv($enum, ',', "'");
+    $options = str_getcsv($enum, ',', "'");
 }
 ?>
 <html !DOCTYPE>
@@ -66,16 +66,27 @@ if ($result && strpos($result['Type'], 'enum') === 0) {
     <body>
         <form method="post">
             <input type="text" value="<?= $name ?>">
-            <select name="type" id="type" value="<?= $type ?>">
-            <?php foreach($values as $value):?>
-                <option value="<?= $value ?>"><?= $value ?></option>
+
+            <select name="type" id="type">
+            <?php foreach($options as $option):?>
+                <option
+                    value="<?= $option ?>"
+                    <?php if($option == $type):?>selected<?php endif; ?>
+                    ><?= ucfirst($option) ?>
+                </option>
             <?php endforeach; ?>
-            </select>
-            <input class="description" type="text" value="<?= $description ?>">
+            </select><br>
+
+            <div id="add_selects_here"></div>
+            <button class="button" onclick="add_select()" type="button">Add</button>
+
+            <?php for( $i = 0; $i < count($crew); $i++ ){
+                echo $crew[$i]['first_name'] . " " . $crew[$i]['last_name'] . " ";
+            }?>
+
+            <textarea id="description" name="description" rows="6" cols="60"><?= $description ?></textarea>
             <button class="button" type="submit">Submit</button>
         </form>
-        <?php for( $i = 0; $i < count($crew); $i++ ){
-            echo $crew[$i]['first_name'] . " " . $crew[$i]['last_name'] . " ";
-        }?>
+        <script src="../js/add_remove_select.js"></script>
     </body>
 </html>

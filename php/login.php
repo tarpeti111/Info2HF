@@ -1,5 +1,6 @@
 <?php
 include "header.php";
+require_once "db.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {  // Check if form is submitted via POST
     // Check if username and password are set and not empty

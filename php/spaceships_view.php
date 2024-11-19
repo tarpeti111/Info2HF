@@ -78,7 +78,7 @@
                 </td>
                 <?php if(isset($_SESSION['user'])): ?>
                 <td class="td-button">
-                    <a class="button button-update" href="">Update</a>
+                    <a class="button button-update" href="spaceships_update.php?id=<?= $row->id ?>">Update</a>
                 </td>
                 <td class="td-button">
                     <a class="button button-delete" href="">Delete</a>

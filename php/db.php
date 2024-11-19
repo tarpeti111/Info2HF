@@ -1,5 +1,5 @@
 <?php
-require_once("header.php");
+//require_once("header.php");
 function getDb($hostname, $dbname, $username, $password){
     try {
         $db = new PDO("mysql:host=$hostname; dbname=$dbname", "$username", "$password");
