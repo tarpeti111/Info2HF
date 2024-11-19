@@ -19,4 +19,4 @@ function sortTable(columnIndex, direction) {
     // Reattach sorted rows to the table
     const tbody = table.tBodies[0];
     rows.forEach(row => tbody.appendChild(row));
-}
+} 

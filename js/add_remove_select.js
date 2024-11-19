@@ -16,7 +16,6 @@ function add_select(value) {
     if(!loaded) {
         return;
     }
-    console.log(value)
     
     // Create a container div for the select and remove button
     let containerDiv = document.createElement('div');
@@ -37,8 +36,13 @@ function add_select(value) {
     else{
         let set = false;
         let i = 0
+        var indexes = [];
+        selects.forEach(select => {
+            indexes.push(select.selectedIndex)
+        });
+
         for (;i < selects.length; i++){
-            if(selects[i].selectedIndex != i){
+            if(!indexes.includes(i)){
                 selectElement.selectedIndex = i
                 set = true;
                 break;
@@ -91,8 +95,6 @@ function updateOptions() {
         indexes.push(select.selectedIndex)
         optionsAll.push(select.options)
     });
-
-    console.log(indexes)
 
     optionsAll.forEach(options => {
         for (let i = 0; i < options.length; i++) {
