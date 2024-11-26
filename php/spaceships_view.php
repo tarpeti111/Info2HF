@@ -12,9 +12,18 @@
         <script type="importmap"><?php include "../json/importmap.json"; ?></script>
         <script src="../js/sort_table.js" defer></script>
     </head>
-    <body class="<?= $_SESSION["theme"] ?>">
+    <body>
+        <?php require_once "alert_message.php"; ?>
         <?php include "navbar.php" ?>
-        <div class="topbar">Space Ships</div>
+        <div class="topbar">Space Ships
+        <div style="margin-left: 3%;"></div>
+        <div class="search-input">
+            <input type="text" id="searchInput" placeholder="Search">
+        </div>
+            <div class="right">
+                <a href="spaceships_update.php" class="button">Add new Spaceship</a>
+            </div>
+        </div>
         <table>
         <tr>
             <th>
@@ -74,14 +83,17 @@
                     <?php endwhile; ?>
                 </td>
                 <td>
-                        <?= $db->query("SELECT title FROM missions WHERE missions.id = $row->missions_id LIMIT 1")->fetchObject()->title ?> <br>
+                    <?php $missionTitle = ($row->missions_id !== NULL) ?
+                    $db->query("SELECT title FROM missions WHERE missions.id = $row->missions_id LIMIT 1")->fetchObject()->title :
+                    ""?>
+                        <?= $missionTitle ?> <br>
                 </td>
                 <?php if(isset($_SESSION['user'])): ?>
                 <td class="td-button">
-                    <a class="button button-update" href="spaceships_update.php?id=<?= $row->id ?>">Update</a>
+                    <a class="button-table button-update" href="spaceships_update.php?id=<?= $row->id ?>">Update</a>
                 </td>
                 <td class="td-button">
-                    <a class="button button-delete" href="">Delete</a>
+                    <a class="button-table button-delete" href="delete_entry.php?id=<?= $row->id ?>">Delete</a>
                 </td>
                 <?php endif; ?>
             </tr>
@@ -89,5 +101,6 @@
         </table>
         <canvas></canvas>
         <script type="module" src="../js/three.js"></script>
+        <script src="../js/search_table.js"></script>
     </body>
 </html>

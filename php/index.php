@@ -15,8 +15,11 @@ $username = $_SESSION['user']["username"] ?? "";
     </head>
     <body class="<?= $_SESSION["theme"] ?>">
         <canvas></canvas>
+        <?php require_once "alert_message.php"; ?>
         <?php include "navbar.php" ?>
-        <div class="topbar">Welcome <?= $username ?></div>
+        <div class="home-topbar">
+            <div>Welcome <?= $username ?></div>
+        </div>
         <div class="home-content">
             <div>
                 <h1>
@@ -40,7 +43,7 @@ $username = $_SESSION['user']["username"] ?? "";
                     Number of Astronauts on missions: <?= $db->query(
                         "SELECT count(astronauts.id) AS count FROM astronauts " .
                         "JOIN spaceships ON astronauts.spaceships_id = spaceships.id " .
-                        "WHERE astronauts.spaceships_id IS NOT NULL AND spaceships.missions_id IS NOT NULL;"
+                        "WHERE astronauts.spaceships_id IS NOT NULL AND spaceships.missions_id IS NOT NULL"
                     )->fetchObject()->count; ?>
                 </li>
             </div>
@@ -49,11 +52,6 @@ $username = $_SESSION['user']["username"] ?? "";
                     <th>
                         <div class="th-content">
                             <div>Ongoing Missions</div>
-                            <div class="button-container">
-                                <img class="button" onclick= "sortTable(0, 'up')" src="../resources/images/up_arrow_white.png" alt="up_arrow_white.png">
-                                <img class="button" onclick= "sortTable(0, 'down')" src="../resources/images/down_arrow_white.png" alt="down_arrow_white.png">
-                            </div>
-                        </div>
                     </th>
                 </tr>
                 <?php

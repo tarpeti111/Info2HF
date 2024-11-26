@@ -83,6 +83,7 @@ canvas {
   font-size: 16px;
   background-color: #64b5f6;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .topnav a.button {
@@ -111,19 +112,43 @@ a.button.active {
   align-items: center;
 }
 .topnav .right {
+  margin-right: 40px;
+}
+
+.right {
   font-size: large;
   display: inline-flex;
   justify-content: flex-end; /* Aligns items inside .right to the end */
-  margin-right: 40px; /* This adds spacing between the content in .right and the edge */
   width: 100%; /* Allows proper alignment if needed */
 }
 
-.topbar {
+.home-topbar {
+  align-items: center; /* Vertically align items */
   margin: 30px;
   padding: 10px;
+  background-color: #c3e1fa;
+  font-size: 20;
+  border-radius: 5px;
+}
+
+.topbar {
+  display: flex; /* Make topbar a flexbox container */
+  align-items: center; /* Vertically align items */
+  justify-content: space-between; /* Push items to the edges */
+  margin: 30px;
+  padding-left: 10px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   color: #212121;
   background-color: #c3e1fa;
   font-size: 20;
+  white-space: nowrap;
+  border-radius: 5px;
+}
+.topbar .button {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .form-login {
@@ -156,10 +181,6 @@ a.button.active {
 .form-update .select-container button:hover {
   opacity: 80%;
 }
-.form-update element {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
 
 .home-content {
   margin-left: 30px;
@@ -179,6 +200,10 @@ a.button.active {
   margin: 0;
   width: 200px;
 }
+.home-content input {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
 
 ul {
   margin: 0;
@@ -195,6 +220,38 @@ ul {
   color: #f0f0f0;
 }
 
+.button-table {
+  display: flex;
+  padding: 0;
+  height: 100%;
+  width: 100;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-decoration: none;
+}
+
+.button-table:hover {
+  opacity: 80%;
+}
+
 .td-button {
   padding: 0;
+}
+
+#searchInput {
+  background-color: #f5f5f5;
+  color: #212121;
+  border-radius: 5px;
+  height: 30px;
+  border: none;
+}
+
+#searchInput::-moz-placeholder {
+  color: #212121;
+  opacity: 1; /* Firefox */
+}
+
+#searchInput::placeholder {
+  color: #212121;
+  opacity: 1; /* Firefox */
 }/*# sourceMappingURL=light_theme.css.map */

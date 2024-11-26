@@ -43,11 +43,11 @@ CREATE TABLE IF NOT EXISTS `SpaceMissions`.`spaceships` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `type` ENUM('scout', 'exploration', 'transport', 'dreadnaught', 'research', 'colony', 'resupply', 'mining') NOT NULL,
-  `missions_id` INT UNSIGNED NOT NULL,
+  `missions_id` INT UNSIGNED NULL,
   `description` VARCHAR(200) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC),
-  INDEX `fk_spaceships_missions1_idx` (`missions_id` ASC),
+  UNIQUE INDEX `name_UNIQUE` (`name`),
+  INDEX `fk_spaceships_missions1_idx` (`missions_id`),
   CONSTRAINT `fk_spaceships_missions1`
     FOREIGN KEY (`missions_id`)
     REFERENCES `SpaceMissions`.`missions` (`id`)
@@ -67,9 +67,9 @@ CREATE TABLE IF NOT EXISTS `SpaceMissions`.`astronauts` (
   `last_name` VARCHAR(45) NOT NULL,
   `occupation` ENUM('commander', 'engineer', 'scientist', 'pilot', 'medic', 'technician', 'security', 'communicator', 'robotics') NOT NULL,
   `birth_date` DATE NOT NULL,
-  `spaceships_id` INT UNSIGNED NOT NULL,
+  `spaceships_id` INT UNSIGNED NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_astronauts_spaceships_idx` (`spaceships_id` ASC),
+  INDEX `fk_astronauts_spaceships_idx` (`spaceships_id`),
   CONSTRAINT `fk_astronauts_spaceships`
     FOREIGN KEY (`spaceships_id`)
     REFERENCES `SpaceMissions`.`spaceships` (`id`)
@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `SpaceMissions`.`users` (
   `password` VARCHAR(45) NOT NULL,
   `access_level` ENUM('user', 'admin') NULL DEFAULT 'user',
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
+  UNIQUE INDEX `username_UNIQUE` (`username`),
+  UNIQUE INDEX `email_UNIQUE` (`email`))
 ENGINE = InnoDB;
 
 

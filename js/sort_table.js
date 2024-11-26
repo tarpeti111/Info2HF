@@ -3,13 +3,11 @@ function sortTable(columnIndex, direction) {
     let rows = Array.from(table.rows).slice(1); // Get rows, excluding the header row
 
     let isAscending = !(direction === "down");
-    console.log(isAscending)
 
     // Sort rows based on the content of the specified column
     rows.sort((a, b) => {
         const cellA = a.cells[columnIndex].innerText.toLowerCase();
         const cellB = b.cells[columnIndex].innerText.toLowerCase();
-        console.log("sorting")
 
         if (cellA < cellB) return isAscending ? -1 : 1;
         if (cellA > cellB) return isAscending ? 1 : -1;

@@ -1,13 +1,26 @@
 var loaded = false;
-let astronauts = undefined;
+let responseArray = undefined;
 let selects = [];
+let contentToAdd = undefined;
 
 function loadAstronauts() {
     return fetch('../php/get_astronauts.php')
         .then(response => response.json())
         .then(responseJson => {
-            astronauts = responseJson;
+            responseArray = responseJson;
             loaded = true;
+            contentToAdd = "astronaut";
+        })
+        .catch(error => console.error('Error fetching options:', error));
+}
+
+function loadShips() {
+    return fetch('../php/get_ships.php')
+        .then(response => response.json())
+        .then(responseJson => {
+            responseArray = responseJson;
+            loaded = true;
+            contentToAdd = "spaceship";
         })
         .catch(error => console.error('Error fetching options:', error));
 }
@@ -23,53 +36,9 @@ function add_select(value) {
 
     // Create the select element
     let selectElement = document.createElement('select');
-    astronauts.forEach(option => {
-        let optionElement = document.createElement('option');
-        optionElement.value = option.first_name + " " + option.last_name;
-        optionElement.textContent = option.first_name + " " + option.last_name;
-        selectElement.appendChild(optionElement);
-    });
-
-    if(value){
-        selectElement.value = value;
-    }
-    else{
-        let set = false;
-        let i = 0
-        var indexes = [];
-        selects.forEach(select => {
-            indexes.push(select.selectedIndex)
-        });
-
-        for (;i < selects.length; i++){
-            if(!indexes.includes(i)){
-                selectElement.selectedIndex = i
-                set = true;
-                break;
-            }
-        }
-        if(!set){
-            selectElement.selectedIndex = i
-        }
-    }
-
-    // Create the remove button
-    let removeButton = document.createElement('button');
-    removeButton.textContent = 'Remove';
-    removeButton.type = 'button';
-    removeButton.classList.add('button-delete')
-
-    // Add event listener for removing the select element
-    removeButton.addEventListener('click', function () {
-        containerDiv.remove(); // Remove the entire container div (select + button)
-
-        const index = selects.indexOf(selectElement);
-        if (index > -1) {
-            selects.splice(index, 1);
-        }
-
-        updateOptions(); // Update options in all remaining selects
-    });
+    addOptions(selectElement, contentToAdd);
+    setValue(selectElement, value);
+    const removeButton = addRemoveButton();
 
     // Add event listener to update options when a selection is made
     selectElement.addEventListener('change', function () {
@@ -88,17 +57,83 @@ function add_select(value) {
     updateOptions();
 }
 
-function updateOptions() {
-    let indexes = []
-    let optionsAll = []
-    selects.forEach(select => {
-        indexes.push(select.selectedIndex)
-        optionsAll.push(select.options)
-    });
+function addOptions(selectElement, contentToAdd){
+    if(contentToAdd === "astronaut") {
+        selectElement.name = "astronauts[]"
+        responseArray.forEach(option => {
+            let optionElement = document.createElement('option');
+            optionElement.value = option.first_name + " " + option.last_name;
+            optionElement.textContent = option.first_name + " " + option.last_name;
+            selectElement.appendChild(optionElement);
+        });
+    }
+    else if(contentToAdd === "spaceship") {
+        selectElement.name = "ships[]"
+        responseArray.forEach(option => {
+            let optionElement = document.createElement('option');
+            optionElement.value = option.name;
+            optionElement.textContent = option.name;
+            selectElement.appendChild(optionElement);
+        });
+    }
+}
 
-    optionsAll.forEach(options => {
-        for (let i = 0; i < options.length; i++) {
-            options[i].disabled = indexes.includes(i) ? true : false;
+function setValue(selectElement, value) {
+    if (value) {
+        // Set the value directly if provided
+        selectElement.value = value;
+    } else {
+        // Determine which index to set if no value is provided
+        let set = false;
+        let i = 0;
+        let indexes = selects.map(select => select.selectedIndex);
+
+        for (; i < selects.length; i++) {
+            if (!indexes.includes(i)) {
+                selectElement.selectedIndex = i;
+                set = true;
+                break;
+            }
         }
+
+        if (!set) {
+            // If no unused index is found, default to the last index
+            selectElement.selectedIndex = i;
+        }
+    }
+}
+
+function addRemoveButton(selectElement){
+    // Create the remove button
+    let removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.type = 'button';
+    removeButton.classList.add('button-delete')
+
+    // Add event listener for removing the select element
+    removeButton.addEventListener('click', function () {
+        containerDiv.remove(); // Remove the entire container div (select + button)
+
+        const index = selects.indexOf(selectElement);
+        if (index > -1) {
+            selects.splice(index, 1);
+        }
+
+        updateOptions(); // Update options in all remaining selects
     });
+    return removeButton;
+}
+
+function updateOptions(){
+    let usedOptions = [];
+
+    selects.forEach((select) => {
+        usedOptions.push(select.selectedIndex)
+    })
+
+    selects.forEach((select) => {
+        for (let i = 0; i < select.options.length; i++) {
+            select.options[i].disabled = usedOptions.includes(i) && select.selectedIndex != i ? true : false;
+        }
+    })
 }
