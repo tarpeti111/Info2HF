@@ -111,3 +111,15 @@ INSERT INTO `SpaceMissions`.`astronauts` (`first_name`, `last_name`, `occupation
 -- Crew for Celestial (research, 2 astronauts)
 ('Isabel', 'Garcia', 'scientist', '1988-06-26', 20),
 ('Oscar', 'Rogers', 'technician', '1990-09-09', 20);
+
+-- Insert a user with 'user' access level
+INSERT INTO `spacemissions`.`users` (`username`, `email`, `password`, `access_level`) 
+VALUES ('user', 'user@example.com', '$2y$10$DCc/wmu1TfKeqrAwVbJa1OlnnzfK56OxqOItYV8DAx6SRD12ngvaG', 'user');
+
+-- Insert a user with 'admin' access level
+INSERT INTO `spacemissions`.`users` (`username`, `email`, `password`, `access_level`) 
+VALUES ('admin', 'admin@example.com', '$2y$10$NGQF1Sy5vb4PsF06mfAMM.fUwUag24n48FB0hlJovnqQPCKoep5.K', 'admin');
+
+-- Insert a user with 'moderator' access level
+INSERT INTO `spacemissions`.`users` (`username`, `email`, `password`, `access_level`) 
+VALUES ('moderator', 'moderator@example.com', '$2y$10$JI6ouN9E/ykUcbOKM5VkHe053Hd195DqpUyIFfIzmNL3mN94JoHZ2', 'moderator');

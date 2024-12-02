@@ -37,13 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <html !DOCTYPE>
 <html lang="hu">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <?php require_once "style.php"; ?>
+        <link rel="stylesheet" href="../css/<?=$_SESSION["theme"]?>_theme.css">
         <title>Register</title>
     </head>
     <body>

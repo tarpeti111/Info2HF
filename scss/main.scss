@@ -1,242 +1,310 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: $background;
-    color: $text-primary;
-    margin: 0;
-  }
-  
-  canvas {
-    width: 100vw;
-    height: 100vh;
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -9999;
-  }
-  
-  // Table styling
-  table {
-    background-color: black;
-    margin: 30px 0 0 30px;
-    border-spacing: 2px;
-  
-    th {
-      background-color: $highlight-terciary;
-      color: $text-primary-light;
-      height: 50px;
-      padding: 0 10px;
-  
-      .button {
-        cursor: pointer;
-      }
-    }
-  
-    td {
-      text-align: left;
-      height: 30px;
-      padding: 0 5px;
-    }
-  
-    tr {
-      padding: 0;
-  
-      &:nth-child(even) {
-        background-color: $surface;
-      }
-  
-      &:nth-child(odd) {
-        background-color: $highlight-secondary;
-        color: $text-secondary;
-      }
-  
-      &:hover {
-        background-color: $tr-hover-background;
-      }
-    }
-  }
-  
-  // Button styles
-  .button {
-    border: none;
-    color: $text-low-contrast;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    background-color: $highlight-primary;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: $background;
+  color: $text-primary;
+  margin: 0%;
+}
+
+table {
+  background-color: black;
+  margin-left: 30px;
+  margin-top: 30px;
+  border-spacing: 2px; 
+}
+
+th {
+  background-color: $highlight-terciary; 
+  color: $text-primary-light;        
+  height: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  .button{
     cursor: pointer;
-    border-radius: 5px;
-  
-    &:hover {
-      opacity: 80%;
-    }
-  
-    &.active {
-      background-color: $highlight;
-    }
   }
-  
-  .button-update {
-    background-color: $button-update-background;
-    color: $button-update-color;
-  }
-  
-  .button-delete {
-    background-color: $button-delete-background;
-    color: $button-delete-color;
-  }
-  
-  .button-table {
+  .th-content{
     display: flex;
+    align-items: center;
+    justify-content: center
+  }
+}
+
+.button-container {
+  margin-left: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.button-container img.button{
+  background-color: rgba(0,0,0,0);
+  margin: -4px;
+  padding: 0%;
+  width: 16px;
+  height: 16px;
+}
+
+td {
+  text-align: left;
+  height: 30px;
+  padding-left: 5px;
+  padding-right: 5px;
+  a{
     padding: 0;
+    display: flex;
+    margin: 0;
     height: 100%;
-    width: 100%;
+    width: 100;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-  
-    &:hover {
+  }
+  &.td-button{
+    padding: 0;
+    &:hover{
       opacity: 80%;
     }
   }
-  
-  .td-button {
-    padding: 0;
+   &.checkbox{
+    text-align: center;
   }
-  
-  .button-container {
-    margin: auto 0 auto 10px;
-  
-    img.button {
-      background-color: transparent;
-      margin: -4px;
-      padding: 0;
-      width: 16px;
-      height: 16px;
-    }
+}
+
+tr {
+  padding: 0%; 
+}
+
+tr:nth-child(even) {
+  background-color: $surface; 
+}
+
+tr:nth-child(odd) {
+  background-color: $highlight-secondary; 
+  color: $text-secondary; 
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9999;
+}
+
+.button {
+  border: none;
+  color: $text-low-contrast;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: $highlight-primary;
+  cursor: pointer;
+  border-radius: 5px;
+  &:hover{
+    opacity: 80%;
   }
-  
-  // Navigation bar
-  .topnav {
-    background-color: $navBg;
-    padding: 10px;
-    margin: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
-    .right {
-      margin-right: 40px;
-      font-size: large;
-      display: inline-flex;
-      justify-content: flex-end;
-      width: 100%;
-  
-      a.button {
-        margin: 0 10px 0 20px;
-        white-space: nowrap;
-      }
-    }
-  }
-  
-  // Topbar styles
-  .topbar,
-  .home-topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 30px;
-    padding: 10px 10px 5px 10px;
-    background-color: $highlight-secondary;
-    color: $text-primary;
-    font-size: 20px;
+}
+
+.topnav {
+  z-index: 100;
+  a.button{
+    margin-left: 20px;
+    margin-right: 10px;
     white-space: nowrap;
-    border-radius: 5px;
+  }
+}
+
+a.button.active {
+  background-color: $highlight;
+}
+
+.topnav {
+  background-color: $navBg;
+  padding: 10px;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .right{
+    margin-right: 40px;
+    align-items: center;
+  }
+}
+
+.right {
+  font-size: large;
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.home-topbar{
+  align-items: center;
+
+  margin: 30px;
+  padding: 10px;
+  background-color: $highlight-secondary;
+  font-size: 20;
+  border-radius: 5px;
+}
+
+.topbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 30px;
+  padding-left: 10px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: $text-primary;
+  background-color: $highlight-secondary;
+  font-size: 20;
+  white-space: nowrap;
+
+  border-radius: 5px;
+
+  .button{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+$form_widht: 200px;
+
+.form-login{
+  width: $form_widht;
+  position: relative;
+  left: 50%;
+  transform: translate((-0.5*$form_widht), 0);
   
-    .button {
-      padding: 10px;
+  input{
+    width: $form_widht;
+    margin-bottom: 20px;
+  }
+}
+
+.form-update {
+  display: flex;
+  flex-direction: column;
+  width: 400px; /* Consistent form width */
+  position: absolute;
+
+  left: 50%;
+  transform: translate(-50%, 0);
+  align-items: stretch; /* Ensure form elements stretch to fill width */
+  gap: 20px; /* Space between rows */
+
+  .form-element-div {
+    display: flex;
+    flex-direction: column; /* Stack label and content */
+    align-items: stretch; /* Ensure child elements stretch to fill width */
+    gap: 10px;
+
+    label {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    textarea,
+    input[type="text"],
+    input[type="date"],
+    input[type="password"],
+    select {
+      padding: 8px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%; /* Stretch inputs to fill the row */
+      box-sizing: border-box; /* Include padding in size */
     }
   }
-  
-  // Forms
-  .form-login {
-    width: $form-width;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
-  
-    input {
-      width: $form-width;
-      margin-bottom: 20px;
-    }
-  }
-  
-  .form-update {
-    margin-left: 30px;
+
+  #add_selects_here {
     display: flex;
     flex-direction: column;
-    width: 200px;
-  
-    .select-container {
-      display: flex;
-      flex-direction: row;
-  
-      button {
-        padding: 10px;
-        margin: 0;
-        cursor: pointer;
-        border: none;
-  
-        &:hover {
-          opacity: 80%;
-        }
+    gap: 10px; /* Space between each select-container */
+  }
+
+  .select-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    select {
+      flex: 1; /* Make the select element fill the available space */
+      padding: 8px;
+      font-size: 1rem;
+    }
+
+    .button-delete {
+      padding: 11px 20px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      height: 100%;
+      &:hover{
+        opacity: 80%;
       }
     }
   }
-  
-  // Home page content
-  .home-content {
-    margin-left: 30px;
-    display: flex;
-    justify-content: space-between;
-  
-    table {
-      margin: 0 30px 0 0;
-      display: inline-flex;
-      justify-content: flex-end;
-    }
-  
-    .button {
-      margin: 0;
-      width: 200px;
-    }
-  
-    input {
-      margin: 5px 0;
+}
+
+.home-content{
+  margin-left: 30px;
+  display: flex;
+  justify-content: space-between;
+  table{
+    margin-left: 0;
+    margin-right: 30px;
+    display: inline-flex;
+    justify-content: flex-end;
+    tr:hover{
+      background-color: $tr-hover-background;
     }
   }
-  
-  // Unordered list
-  ul {
+  .button{
     margin: 0;
-    padding-inline-start: 0;
+    width: 200px;
   }
-  
-  // Search input
-  #searchInput {
-    background-color: $background;
-    color: $text-primary;
-    border-radius: 5px;
-    height: 30px;
-    border: none;
-  
-    &::placeholder {
-      color: $text-primary;
-      opacity: 1; // Firefox compatibility
-    }
+  input{
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+}
+
+ul{
+  margin: 0;
+  padding-inline-start: 0;
+}
+
+.button-update{
+  background-color: $button-update-background;
+  color: $button-update-color;
+}
+
+.button-delete{
+  background-color: $button-delete-background;
+  color: $button-delete-color;
+ 
+}
+
+#searchInput{
+  background-color: $background;
+  color: $text-primary;
+  border-radius: 5px;
+  height: 30px;
+  border: none;
+}
+
+#searchInput::placeholder {
+  color: $text-primary;
+  opacity: 1;
 }

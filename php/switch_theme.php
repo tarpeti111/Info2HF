@@ -8,5 +8,5 @@ else{
     $_SESSION["theme"] = $_SESSION["light"];
 }
     
-header("Location: " . $_SERVER['HTTP_REFERER']);
+header("Location: " . $_SERVER['HTTP_REFERER'] ?? "index.php");
 exit();

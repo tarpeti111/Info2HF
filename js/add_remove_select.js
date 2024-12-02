@@ -38,7 +38,7 @@ function add_select(value) {
     let selectElement = document.createElement('select');
     addOptions(selectElement, contentToAdd);
     setValue(selectElement, value);
-    const removeButton = addRemoveButton();
+    const removeButton = addRemoveButton(selectElement, containerDiv);
 
     // Add event listener to update options when a selection is made
     selectElement.addEventListener('change', function () {
@@ -62,7 +62,7 @@ function addOptions(selectElement, contentToAdd){
         selectElement.name = "astronauts[]"
         responseArray.forEach(option => {
             let optionElement = document.createElement('option');
-            optionElement.value = option.first_name + " " + option.last_name;
+            optionElement.value = option.id;
             optionElement.textContent = option.first_name + " " + option.last_name;
             selectElement.appendChild(optionElement);
         });
@@ -71,7 +71,7 @@ function addOptions(selectElement, contentToAdd){
         selectElement.name = "ships[]"
         responseArray.forEach(option => {
             let optionElement = document.createElement('option');
-            optionElement.value = option.name;
+            optionElement.value = option.id;
             optionElement.textContent = option.name;
             selectElement.appendChild(optionElement);
         });
@@ -103,7 +103,7 @@ function setValue(selectElement, value) {
     }
 }
 
-function addRemoveButton(selectElement){
+function addRemoveButton(selectElement, containerDiv){
     // Create the remove button
     let removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
