@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<!DOCTYPE html>
+<html !DOCTYPE>
 <html lang="hu">
     <head>
         <meta charset="utf-8">

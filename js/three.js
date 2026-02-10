@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 // Initialize clock and scene
@@ -23,7 +24,7 @@ let model = null;
 var modelScale = 1;
 
 const loader = new GLTFLoader();
-loader.load(`../resources/models/${modelName}/scene.gltf`, (gltf) => {
+loader.load(`../gltf/${modelName}/scene.gltf`, (gltf) => {
     model = gltf.scene;
     scene.add(model);
     model.scale.set(modelScale, modelScale, modelScale)
